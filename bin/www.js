@@ -19,5 +19,5 @@ io.on('connection',function (socket) {
 });
 
 http.listen(port,server_ip_address,function () {
-    console.log('server na portu 3000');
+    console.log('server na portu'+port);
 });
