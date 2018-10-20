@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>CHAT APP</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body{
+
+                background: #ffffff;
+            }
+            form{
+                padding :40px;
+                margin-top: 400px;
+
+            }
+            form input{
+                width:  700px; 
+                height: 20px;
+            }
+
+        </style>
+    </head>
+    <body>
+        <ul id="poruke"></ul>
+        <form action="">
+            <input id="m" autocomplete="off" />
+            <button>Send</button>
+        </form>
+        
+
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+        <script>
+            $(function () {
+                var socket = io();
+                $('form').submit(function () {
+                    socket.emit('dogadjaj Slanja Poruke', $('#m').val());
+                    $('#m').val('');
+                    return false;
+                });
+
+                socket.on('dogadjaj Slanja Poruke', function (msg) {
+                    $('#poruke').append($('<li>').text(msg));
+                });
+            });
+
+
+        </script>
+    </body>
+</html>
